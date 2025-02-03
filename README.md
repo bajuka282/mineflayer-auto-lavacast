@@ -13,11 +13,14 @@ This bot is designed for early anarchy servers that require lavacasts. It will a
 Make sure you have Node.js installed. Then, run the following commands to install the required packages:
 1. Install library
 ```bash
-npm install mineflayer mineflayer-pathfinder mineflayer-auto-totem```bash
+npm install mineflayer mineflayer-pathfinder mineflayer-auto-totem
+```
 2. Run bot
 ```bash
 node bot.js
+```
 3. Start Lavacast
 ```bash
 !build
+```
 
