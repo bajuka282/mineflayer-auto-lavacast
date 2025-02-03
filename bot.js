@@ -30,7 +30,7 @@ bot.on('chat', async (username, message) => {
   if (message === '!build') {
     let iterationCount = 0;
     while (true) {
-      console.log('Bắt đầu xây dựng...');
+      console.log('Start building...');
       await buildUp(2);
       await placeLava();
       await bot.waitForTicks(waitTime * 20);
@@ -48,7 +48,7 @@ bot.on('chat', async (username, message) => {
       await placeWater();
       await bot.waitForTicks(20);
       console.log("---------------------");
-      console.log('Tiếp tục xây dựng...');
+      console.log('Continue building...');
       iterationCount++;
     }
   }
@@ -58,7 +58,7 @@ bot.on('chat', async (username, message) => {
   if (username === bot.username) return;
 
   if (message === '!stop') {
-    console.log('Dừng quá trình xây dựng.');
+    console.log('Stop the construction process.');
     process.exit();
   }
 });
@@ -67,14 +67,14 @@ async function buildUp(height) {
   await moveToCenter();
   const block = bot.inventory.items().find(item => item.name.includes("stone") || item.name.includes("dirt"));
   if (!block) {
-    console.log("Không có block trong inventory!");
+    console.log("No block in inventory!");
     return;
   }
 
   for (let i = 0; i < height; i++) {
     const blockBelow = bot.blockAt(bot.entity.position.floored().offset(0, -1, 0));
     if (!blockBelow || blockBelow.name === "air") {
-      console.log("Không có block bên dưới để đặt!");
+      console.log("There is no block below to place!");
       return;
     }
 
@@ -84,11 +84,11 @@ async function buildUp(height) {
       await bot.waitForTicks(5);
       bot.setControlState('jump', false);
       await bot.placeBlock(blockBelow, new Vec3(0, 1, 0));
-      console.log(`Đã đặt block lên cao ${i + 1}!`);
+      console.log(`Block placed ${i + 1}!`);
 
       await bot.waitForTicks(5);
     } catch (err) {
-      console.log("Lỗi khi đặt block: " + err.message);
+      console.log("Error when placing block: " + err.message);
     }
   }
 }
@@ -103,7 +103,7 @@ async function placeLava() {
     console.log(`Đặt lava tại ${x} ${y} ${z}`);
     await bot.chat(`/setblock ${x} ${y} ${z} lava`);
   } catch (err) {
-    console.log("Lỗi khi đặt block: " + err.message);
+    console.log("Error when placing block: " + err.message);
   }
 }
 
@@ -114,14 +114,14 @@ async function placeWater() {
   const z = middleBlockPos.z;
 
   try {
-    console.log(`Đặt nước tại ${x} ${y + 1} ${z}`);
+    console.log(`Place water at ${x} ${y + 1} ${z}`);
     await bot.chat(`/setblock ${x} ${y + 1} ${z} water`);
     await bot.waitForTicks(20);
-    console.log(`Xóa nước tại ${x} ${y + 1} ${z}`);
+    console.log(`Clear water at ${x} ${y + 1} ${z}`);
     await bot.chat(`/setblock ${x} ${y + 1} ${z} air`);
-    console.log("Đã xóa nước.");
+    console.log("Water removed.");
   } catch (err) {
-    console.log("Lỗi khi đặt nước hoặc xóa nước: " + err.message);
+    console.log("Error when setting water or clearing water: " + err.message);
   }
 }
 
@@ -132,12 +132,12 @@ async function moveToCenter() {
   if (pos.distanceTo(center) > 0.1) {
     console.log("Bot chưa ở trung tâm, di chuyển...");
     await bot.pathfinder.goto(new goals.GoalBlock(center.x, center.y, center.z));
-    console.log("Bot đã vào trung tâm block.");
+    console.log("Bot has entered the block center.");
   }
 }
 
 bot.on('death', () => {
-  console.log('Tao chết con mẹ nó rồi!');
+  bot.chat('I'm fucking dead!');
 
   setTimeout(() => {
     bot.chat('/k1');
