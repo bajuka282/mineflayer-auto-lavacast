@@ -100,7 +100,7 @@ async function placeLava() {
   const z = middleBlockPos.z;
 
   try {
-    console.log(`Đặt lava tại ${x} ${y} ${z}`);
+    console.log(`Place the lava at ${x} ${y} ${z}`);
     await bot.chat(`/setblock ${x} ${y} ${z} lava`);
   } catch (err) {
     console.log("Error when placing block: " + err.message);
@@ -130,7 +130,7 @@ async function moveToCenter() {
   const center = pos.floored().offset(0.5, 0, 0.5);
 
   if (pos.distanceTo(center) > 0.1) {
-    console.log("Bot chưa ở trung tâm, di chuyển...");
+    console.log("Bot not in center, moving...");
     await bot.pathfinder.goto(new goals.GoalBlock(center.x, center.y, center.z));
     console.log("Bot has entered the block center.");
   }
