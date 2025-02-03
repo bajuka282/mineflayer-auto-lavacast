@@ -30,3 +30,6 @@ give <your_bot> stone
 !build
 ```
 
+![image](https://github.com/user-attachments/assets/5cd400bd-7bc5-4cbe-a65d-dd48cec0d632)
+
+
