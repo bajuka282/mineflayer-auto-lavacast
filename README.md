@@ -19,7 +19,13 @@ npm install mineflayer mineflayer-pathfinder mineflayer-auto-totem
 ```bash
 node bot.js
 ```
-3. Start Lavacast
+3. Equip
+```bash
+op <your_bot>
+gamemode creative <your_bot>
+give <your_bot> stone
+```
+4. Start Lavacast
 ```bash
 !build
 ```
