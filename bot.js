@@ -17,7 +17,7 @@ bot.loadPlugin(pathfinder);
 let waitTime = 20;
 
 bot.on('spawn', () => {
-  console.log('Bot đã kết nối vào server!');
+  console.log('✅ Bot connected to server!');
   bot.chat(`/register ${password} ${password}`);
   setTimeout(() => {
     bot.chat(`/login ${password}`);
