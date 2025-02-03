@@ -18,4 +18,9 @@ This bot automatically builds a lavacast in Minecraft using the Mineflayer libra
 1. Clone this repository:
    ```bash
    git clone https://github.com/yourusername/lavacast-bot.git
-   cd lavacast-bot
+   cd lavacast-bot```
+
+Start the bot:
+```bash
+node index.js
+
